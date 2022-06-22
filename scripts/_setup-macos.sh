@@ -130,12 +130,12 @@ function install_folly {
 
 function install_ranges_v3 {
   github_checkout ericniebler/range-v3 master
-  cmake_install -DRANGES_ENABLE_WERROR=OFF
+  cmake_install -DRANGES_ENABLE_WERROR=OFF -DRANGE_V3_TESTS=OFF -DRANGE_V3_EXAMPLES=OFF
 }
 
 function install_re2 {
   github_checkout google/re2 2021-04-01
-  cmake_install
+  cmake_install -DRE2_BUILD_TESTING=OFF
 }
 
 function install_velox_deps {
@@ -143,7 +143,6 @@ function install_velox_deps {
     run_and_time install_build_prerequisites
   fi
   run_and_time install_ranges_v3
-  run_and_time install_googletest
   run_and_time install_fmt
   run_and_time install_double_conversion
   run_and_time install_folly
